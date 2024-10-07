@@ -1,0 +1,13 @@
+
+name = "durable-object-experiments"
+main = "src/index.tsx"
+compatibility_date = "2024-10-04"
+compatibility_flags = ["nodejs_compat"]
+
+[[durable_objects.bindings]]
+name = "COUNTERS"
+class_name = "Counter"
+
+[[migrations]]
+tag = "v1"
+new_classes = ["Counter"]

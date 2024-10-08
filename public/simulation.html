@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Simulation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 font-sans p-5">
+    <div id="controls" class="text-center mb-5">
+        <button id="tickBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
+            Tick
+        </button>
+        <button id="addPlantBtn" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+            Add Plant
+        </button>
+        <button id="resetStateBtn" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+            Reset State
+        </button>
+    </div>
+    <div id="weather" class="text-center mb-3 text-lg font-semibold"></div>
+    <div id="stats" class="text-center mb-5 text-lg font-semibold"></div>
+    <div id="world" class="w-[500px] h-[500px] bg-green-200 relative mx-auto"></div>
+
+    <script>
+        const worldEl = document.getElementById('world');
+        const weatherEl = document.getElementById('weather');
+        const statsEl = document.getElementById('stats');
+        const tickBtn = document.getElementById('tickBtn');
+        const addPlantBtn = document.getElementById('addPlantBtn');
+        const resetStateBtn = document.getElementById('resetStateBtn');
+        let plants = {};
+
+        function updateWorld(data) {
+            weatherEl.textContent = `Weather: Sunlight ${data.weather.sunlight}%, Rain ${data.weather.rain}%`;
+            statsEl.textContent = `Tick: ${data.tickCount}, Plants: ${data.plantCount}`;
+        }
+
+        function renderPlants() {
+            worldEl.innerHTML = '';
+            Object.values(plants).forEach(plant => {
+                const plantEl = document.createElement('div');
+                plantEl.className = 'absolute rounded-full bg-green-600';
+                plantEl.style.left = `${plant.position.x}%`;
+                plantEl.style.top = `${plant.position.y}%`;
+                plantEl.style.width = `${plant.height * 5}px`;
+                plantEl.style.height = `${plant.height * 5}px`;
+                console.log('plant', plantEl, plant);
+                worldEl.appendChild(plantEl);
+            });
+        }
+
+        async function tick() {
+            const response = await fetch('/simulation/tick', { method: 'POST' });
+            const data = await response.json();
+            updateWorld(data);
+            await updatePlants();
+        }
+
+        async function addPlant() {
+            const response = await fetch('/simulation/addPlant', { method: 'POST' });
+            const data = await response.json();
+            await updatePlants();
+        }
+
+        async function updatePlants() {
+            const response = await fetch('/simulation/state');
+            const data = await response.json();
+            plants = data.plants;
+            renderPlants();
+        }
+
+        async function resetState() {
+            const response = await fetch('/simulation/resetState', { method: 'POST' });
+            const data = await response.json();
+            plants = {};
+            renderPlants();
+        }
+
+        tickBtn.addEventListener('click', tick);
+        addPlantBtn.addEventListener('click', addPlant);
+        resetStateBtn.addEventListener('click', resetState);
+        // Initial update
+        updatePlants();
+    </script>
+</body>
+
+</html>

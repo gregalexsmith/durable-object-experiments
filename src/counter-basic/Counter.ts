@@ -1,6 +1,10 @@
 import { DurableObject } from 'cloudflare:workers';
 
 export class Counter extends DurableObject {
+	constructor(state: DurableObjectState, env: Env) {
+		super(state, env);
+	}
+
 	async getCounterValue() {
 		let value = Number(await this.ctx.storage.get('value')) || 0;
 		return value;

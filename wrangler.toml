@@ -9,9 +9,10 @@ bindings = [
   { name = "COUNTERS", class_name = "Counter" },
   { name = "WORLD", class_name = "World" },
   { name = "PLANTS", class_name = "Plant" },
-  { name = "WEATHER", class_name = "Weather" }
+  { name = "WEATHER", class_name = "Weather" },
+  { name = "WEBSOCKET_HIBERNATION_SERVER", class_name = "WebSocketHibernationServer" }
 ]
 
 [[migrations]]
 tag = "v1"
-new_classes = ["Counter", "World", "Plant", "Weather"]
+new_classes = ["Counter", "World", "Plant", "Weather", "WebSocketHibernationServer"]

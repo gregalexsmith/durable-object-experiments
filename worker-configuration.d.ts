@@ -5,5 +5,6 @@ interface Env {
 	WORLD: DurableObjectNamespace<World>;
 	PLANTS: DurableObjectNamespace<Plant>;
 	WEATHER: DurableObjectNamespace<Weather>;
+	WEBSOCKET_HIBERNATION_SERVER: DurableObjectNamespace<WebSocketHibernationServer>;
 	ASSETS: Fetcher;
 }

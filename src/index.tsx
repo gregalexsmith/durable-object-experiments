@@ -1,6 +1,7 @@
 import { Hono } from 'hono';
 import counterBasic from './counter-basic/route';
 import simulation from './simulation/route';
+import webSocketHibernation from './websocket-hibernation/route';
 import type { Context } from './types';
 
 const app = new Hono<Context>();
@@ -13,6 +14,7 @@ app.get('/', (c) => {
 				<div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
 					<a href="/counter-basic">Counter Basic</a>
 					<a href="/simulation">World Simulation</a>
+					<a href="/websocket-hibernation">WebSocket Hibernation</a>
 				</div>
 			</body>
 		</html>
@@ -21,6 +23,7 @@ app.get('/', (c) => {
 
 app.route('/counter-basic', counterBasic);
 app.route('/simulation', simulation);
+app.route('/websocket-hibernation', webSocketHibernation);
 
 export default app;
 
@@ -29,3 +32,5 @@ export { Counter } from './counter-basic/Counter';
 export { World } from './simulation/World';
 export { Weather } from './simulation/Weather';
 export { Plant } from './simulation/Plant';
+
+export { WebSocketHibernationServer } from './websocket-hibernation/WebSocketHibernationServer';

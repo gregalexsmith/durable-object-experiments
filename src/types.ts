@@ -3,6 +3,7 @@ import { World } from './simulation/World';
 import { Plant } from './simulation/Plant';
 import { Weather } from './simulation/Weather';
 import { WebSocketHibernationServer } from './websocket-hibernation/WebSocketHibernationServer';
+import { SQLBasic } from './sql-basic/SQLBasic';
 
 export type Context = {
 	Bindings: {
@@ -11,6 +12,7 @@ export type Context = {
 		PLANTS: DurableObjectNamespace<Plant>;
 		WEATHER: DurableObjectNamespace<Weather>;
 		WEBSOCKET_HIBERNATION_SERVER: DurableObjectNamespace<WebSocketHibernationServer>;
+		SQL_BASIC: DurableObjectNamespace<SQLBasic>;
 		ASSETS: Fetcher;
 	};
 	Variables: {};

@@ -4,6 +4,9 @@ compatibility_date = "2024-10-04"
 compatibility_flags = ["nodejs_compat"]
 assets = { directory = "./public/", binding = "ASSETS" }
 
+[ai]
+binding = "AI"
+
 [durable_objects]
 bindings = [
   { name = "COUNTERS", class_name = "Counter" },
@@ -11,10 +14,11 @@ bindings = [
   { name = "PLANTS", class_name = "Plant" },
   { name = "WEATHER", class_name = "Weather" },
   { name = "WEBSOCKET_HIBERNATION_SERVER", class_name = "WebSocketHibernationServer" },
-  { name = "SQL_TASKS", class_name = "SQLTasks" }
+  { name = "SQL_TASKS", class_name = "SQLTasks" },
+  { name = "AI_EXAMPLE", class_name = "AIExample" }
 ]
 
 [[migrations]]
 tag = "v1"
 new_classes = ["Counter", "World", "Plant", "Weather", "WebSocketHibernationServer"]
-new_sqlite_classes = ["SQLTasks"]
+new_sqlite_classes = ["SQLTasks", "AIExample"]

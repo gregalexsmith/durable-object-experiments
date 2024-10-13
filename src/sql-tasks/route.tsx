@@ -9,9 +9,8 @@ const BASE_URL = '/sql-tasks';
 
 app.get(
 	'/*',
-	jsxRenderer(async ({ children }) => {
+	jsxRenderer(async () => {
 		const c = useRequestContext<Context>();
-
 		const id = c.env.SQL_TASKS.idFromName(EXAMPLE_DO_ID);
 		const stub = c.env.SQL_TASKS.get(id);
 		const tasks = await stub.getTasks();

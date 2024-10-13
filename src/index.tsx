@@ -3,6 +3,7 @@ import counter from './counter/route';
 import simulation from './simulation/route';
 import webSocketHibernation from './websocket-hibernation/route';
 import sqlTasks from './sql-tasks/route';
+import aiExample from './ai-example/route';
 import type { Context } from './types';
 
 const app = new Hono<Context>();
@@ -17,6 +18,7 @@ app.get('/', (c) => {
 					<a href="/simulation">World Simulation</a>
 					<a href="/websocket-hibernation">WebSocket Hibernation</a>
 					<a href="/sql-tasks">SQL Tasks</a>
+					<a href="/ai-example">AI Example</a>
 				</div>
 			</body>
 		</html>
@@ -27,6 +29,8 @@ app.route('/counter', counter);
 app.route('/simulation', simulation);
 app.route('/websocket-hibernation', webSocketHibernation);
 app.route('/sql-tasks', sqlTasks);
+app.route('/ai-example', aiExample);
+
 export default app;
 
 export { Counter } from './counter/Counter';
@@ -37,3 +41,4 @@ export { Plant } from './simulation/Plant';
 
 export { WebSocketHibernationServer } from './websocket-hibernation/WebSocketHibernationServer';
 export { SQLTasks } from './sql-tasks/SQLTasks';
+export { AIExample } from './ai-example/AIExample';

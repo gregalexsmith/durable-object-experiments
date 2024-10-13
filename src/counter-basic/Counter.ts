@@ -1,3 +1,8 @@
+/**
+ * References:
+ * - https://developers.cloudflare.com/durable-objects/examples/build-a-counter/
+ */
+
 import { DurableObject } from 'cloudflare:workers';
 
 export class Counter extends DurableObject {

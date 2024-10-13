@@ -1,5 +1,6 @@
 /**
  * References:
+ * - https://developers.cloudflare.com/durable-objects/examples/websocket-hibernation-server/
  * - https://github.com/cloudflare/workers-chat-demo/blob/master/src/chat.mjs
  */
 

@@ -5,24 +5,23 @@ import { jsxRenderer, useRequestContext } from 'hono/jsx-renderer';
 const app = new Hono<Context>();
 
 const EXAMPLE_DO_ID = 'default_example';
+const BASE_URL = '/sql-tasks';
 
 app.get(
 	'/*',
 	jsxRenderer(async ({ children }) => {
 		const c = useRequestContext<Context>();
 
-		const id = c.env.SQL_BASIC.idFromName(EXAMPLE_DO_ID);
-		const stub = c.env.SQL_BASIC.get(id);
+		const id = c.env.SQL_TASKS.idFromName(EXAMPLE_DO_ID);
+		const stub = c.env.SQL_TASKS.get(id);
 		const tasks = await stub.getTasks();
 
 		return (
 			<html>
-				<head>
-					<title>SQL Basic</title>
-				</head>
 				<body>
+					<a href="/">Home</a>
 					<h1>Tasks</h1>
-					<form action="/sql-basic" method="post">
+					<form action={BASE_URL} method="post">
 						<input type="text" name="content" placeholder="Enter a task" autoFocus />
 						<button type="submit">Add Task</button>
 					</form>
@@ -30,7 +29,7 @@ app.get(
 						{tasks.map((task) => (
 							<li key={task.id}>
 								{task.id}: {task.content}
-								<form action={`/sql-basic/${task.id}/delete`} method="post" style={{ display: 'inline', marginLeft: '10px' }}>
+								<form action={`${BASE_URL}/${task.id}/delete`} method="post" style={{ display: 'inline', marginLeft: '10px' }}>
 									<button type="submit">X</button>
 								</form>
 							</li>
@@ -53,11 +52,11 @@ app.post('/', async (c) => {
 		return new Response('Bad request', { status: 400 });
 	}
 
-	const id = c.env.SQL_BASIC.idFromName(EXAMPLE_DO_ID);
-	const stub = c.env.SQL_BASIC.get(id);
+	const id = c.env.SQL_TASKS.idFromName(EXAMPLE_DO_ID);
+	const stub = c.env.SQL_TASKS.get(id);
 	await stub.createTask(content as string);
 
-	return c.redirect(`/sql-basic`);
+	return c.redirect(`${BASE_URL}`);
 });
 
 app.post('/:id/delete', async (c) => {
@@ -66,10 +65,10 @@ app.post('/:id/delete', async (c) => {
 		return new Response('Not found', { status: 404 });
 	}
 	const idNumber = parseInt(id);
-	const idDurable = c.env.SQL_BASIC.idFromName(EXAMPLE_DO_ID);
-	const stub = c.env.SQL_BASIC.get(idDurable);
+	const idDurable = c.env.SQL_TASKS.idFromName(EXAMPLE_DO_ID);
+	const stub = c.env.SQL_TASKS.get(idDurable);
 	await stub.removeTask(idNumber);
-	return c.redirect(`/sql-basic`);
+	return c.redirect(`${BASE_URL}`);
 });
 
 export default app;

@@ -11,6 +11,7 @@ app.get('/', (c) => {
 				<script src="/websocket-hibernation.js"></script>
 			</head>
 			<body>
+				<a href="/">Home</a>
 				<h1>WebSocket Hibernation</h1>
 				<div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }} id="ws-controls">
 					<button id="connect">Connect</button>

@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS tasks(
 );
 `;
 
-export class SQLBasic extends DurableObject {
+export class SQLTasks extends DurableObject {
 	sql: SqlStorage;
 
 	constructor(ctx: DurableObjectState, env: Env) {

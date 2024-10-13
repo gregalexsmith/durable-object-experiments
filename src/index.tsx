@@ -1,8 +1,8 @@
 import { Hono } from 'hono';
-import counterBasic from './counter-basic/route';
+import counter from './counter/route';
 import simulation from './simulation/route';
 import webSocketHibernation from './websocket-hibernation/route';
-import sqlBasic from './sql-basic/route';
+import sqlTasks from './sql-tasks/route';
 import type { Context } from './types';
 
 const app = new Hono<Context>();
@@ -13,27 +13,27 @@ app.get('/', (c) => {
 			<body>
 				<h1>Durable Object Examples</h1>
 				<div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-					<a href="/counter-basic">Counter Basic</a>
+					<a href="/counter">Counter</a>
 					<a href="/simulation">World Simulation</a>
 					<a href="/websocket-hibernation">WebSocket Hibernation</a>
-					<a href="/sql-basic">SQL Basic</a>
+					<a href="/sql-tasks">SQL Tasks</a>
 				</div>
 			</body>
 		</html>
 	);
 });
 
-app.route('/counter-basic', counterBasic);
+app.route('/counter', counter);
 app.route('/simulation', simulation);
 app.route('/websocket-hibernation', webSocketHibernation);
-app.route('/sql-basic', sqlBasic);
+app.route('/sql-tasks', sqlTasks);
 export default app;
 
-export { Counter } from './counter-basic/Counter';
+export { Counter } from './counter/Counter';
 
 export { World } from './simulation/World';
 export { Weather } from './simulation/Weather';
 export { Plant } from './simulation/Plant';
 
 export { WebSocketHibernationServer } from './websocket-hibernation/WebSocketHibernationServer';
-export { SQLBasic } from './sql-basic/SQLBasic';
+export { SQLTasks } from './sql-tasks/SQLTasks';

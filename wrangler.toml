@@ -11,10 +11,10 @@ bindings = [
   { name = "PLANTS", class_name = "Plant" },
   { name = "WEATHER", class_name = "Weather" },
   { name = "WEBSOCKET_HIBERNATION_SERVER", class_name = "WebSocketHibernationServer" },
-  { name = "SQL_BASIC", class_name = "SQLBasic" }
+  { name = "SQL_TASKS", class_name = "SQLTasks" }
 ]
 
 [[migrations]]
 tag = "v1"
 new_classes = ["Counter", "World", "Plant", "Weather", "WebSocketHibernationServer"]
-new_sqlite_classes = ["SQLBasic"]
+new_sqlite_classes = ["SQLTasks"]

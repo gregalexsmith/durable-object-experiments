@@ -6,6 +6,6 @@ interface Env {
 	PLANTS: DurableObjectNamespace<Plant>;
 	WEATHER: DurableObjectNamespace<Weather>;
 	WEBSOCKET_HIBERNATION_SERVER: DurableObjectNamespace<WebSocketHibernationServer>;
-	TASKS: DurableObjectNamespace<SQLExample>;
+	TASKS: DurableObjectNamespace<SQLTasks>;
 	ASSETS: Fetcher;
 }

@@ -5,6 +5,7 @@ import { Fragment } from 'hono/jsx/jsx-runtime';
 
 const app = new Hono<Context>();
 
+const BASE_URL = '/counter';
 app.get(
 	'/*',
 	jsxRenderer(async ({ children }) => {
@@ -24,8 +25,9 @@ app.get(
 					<title>Counter Basic</title>
 				</head>
 				<body>
+					<a href="/">Home</a>
 					<h1>Counter Basic</h1>
-					<form action="/counter-basic" method="post">
+					<form action={BASE_URL} method="post">
 						<input type="text" name="name" placeholder="Enter name" value={name} />
 						<button type="submit">Get Counter</button>
 					</form>
@@ -50,10 +52,10 @@ app.get('/:name', async (c) => {
 
 	return c.render(
 		<Fragment>
-			<form action={`/counter-basic/${name}/increment`} method="post">
+			<form action={`${BASE_URL}/${name}/increment`} method="post">
 				<button type="submit">Increment</button>
 			</form>
-			<form action={`/counter-basic/${name}/decrement`} method="post">
+			<form action={`${BASE_URL}/${name}/decrement`} method="post">
 				<button type="submit">Decrement</button>
 			</form>
 		</Fragment>
@@ -68,7 +70,7 @@ app.post('/', async (c) => {
 		return new Response('Not found', { status: 404 });
 	}
 
-	return c.redirect(`/counter-basic/${name}`);
+	return c.redirect(`${BASE_URL}/${name}`);
 });
 
 app.post('/:name/increment', async (c) => {
@@ -79,7 +81,7 @@ app.post('/:name/increment', async (c) => {
 	let id = c.env.COUNTERS.idFromName(name);
 	let stub = c.env.COUNTERS.get(id);
 	await stub.increment();
-	return c.redirect(`/counter-basic/${name}`);
+	return c.redirect(`${BASE_URL}/${name}`);
 });
 
 app.post('/:name/decrement', async (c) => {
@@ -90,7 +92,7 @@ app.post('/:name/decrement', async (c) => {
 	let id = c.env.COUNTERS.idFromName(name);
 	let stub = c.env.COUNTERS.get(id);
 	await stub.decrement();
-	return c.redirect(`/counter-basic/${name}`);
+	return c.redirect(`${BASE_URL}/${name}`);
 });
 
 export default app;

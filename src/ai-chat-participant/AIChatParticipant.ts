@@ -1,53 +1,19 @@
 import { DurableObject } from 'cloudflare:workers';
 import OpenAI from 'openai';
 
-type Message = {
-	id: number;
-	role: 'user' | 'assistant';
-	content: string;
-};
-
-const sqlSchema = `
-CREATE TABLE IF NOT EXISTS messages(
-  id    INTEGER PRIMARY KEY,
-  role  TEXT,
-  content  TEXT
-);
-`;
-
 export class AIChatParticipant extends DurableObject {
-	private ai: Ai;
-	private sql: SqlStorage;
 	private openai: OpenAI;
 	private understanding: string = '';
 	private wsServer: WebSocket | null = null;
-	private lastSentMessage: string = '';
 	private participantId: string;
 
 	constructor(ctx: DurableObjectState, env: Env) {
 		super(ctx, env);
-		this.ai = env.AI;
-		this.sql = ctx.storage.sql;
-		this.sql.exec(sqlSchema);
 		this.openai = new OpenAI({
 			apiKey: env.OPENAI_API_KEY,
 			baseURL: `${env.CF_GATEWAY_BASE_URL}/openai`,
 		});
 		this.participantId = `AI-${Math.random().toString(36).substr(2, 9)}`;
-	}
-
-	addMessage(message: Omit<Message, 'id'>) {
-		const escapedRole = message.role.replace(/'/g, "''");
-		const escapedContent = message.content.replace(/'/g, "''");
-		this.sql.exec(`INSERT INTO messages (role, content) VALUES ('${escapedRole}', '${escapedContent}');`);
-	}
-
-	getMessages() {
-		return this.sql.exec('SELECT * FROM messages;').toArray() as Message[];
-	}
-
-	clearMessages() {
-		this.sql.exec('DELETE FROM messages;');
 	}
 
 	async connectToServer(serverUrl: string) {

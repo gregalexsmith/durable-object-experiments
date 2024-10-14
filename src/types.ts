@@ -17,6 +17,9 @@ export type Context = {
 		AI_EXAMPLE: DurableObjectNamespace<AIExample>;
 		ASSETS: Fetcher;
 		AI: Ai;
+		OPENAI_API_KEY: string;
+		CF_API_TOKEN: string;
+		CF_GATEWAY_BASE_URL: string;
 	};
 	Variables: {};
 };

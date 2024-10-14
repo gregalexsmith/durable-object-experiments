@@ -10,4 +10,7 @@ interface Env {
 	AI_EXAMPLE: DurableObjectNamespace /* AIExample */;
 	AI: Ai;
 	ASSETS: Fetcher;
+	OPENAI_API_KEY: string;
+	CF_API_TOKEN: string;
+	CF_GATEWAY_BASE_URL: string;
 }

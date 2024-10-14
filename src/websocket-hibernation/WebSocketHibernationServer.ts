@@ -49,7 +49,6 @@ export class WebSocketHibernationServer extends DurableObject {
 			this.broadcast(`Total clients: ${this.sessions.size}`);
 		} else {
 			// Regular message
-			console.log('ws server - message', message);
 			this.broadcast(`${session.name}: ${message}`);
 		}
 	}

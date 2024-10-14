@@ -63,15 +63,17 @@ export class AIChatParticipant extends DurableObject {
 	private async handleMessage(message: string) {
 		// Ignore messages from self or system messages
 		if (message.startsWith(this.participantId) || message.includes('has joined the chat') || message.includes('Total clients:')) {
-			console.log('Ignoring message:', message);
 			return;
 		}
 
 		// Update understanding
 		this.understanding = await this.updateUnderstanding(message);
+		console.log('--------------------------------');
+		console.log('AI - understanding', this.understanding);
 
 		// Generate and send response
 		const response = await this.generateResponse();
+		console.log('AI - send message', response);
 		this.sendMessage(response);
 	}
 
@@ -97,9 +99,7 @@ export class AIChatParticipant extends DurableObject {
 
 	private sendMessage(message: string) {
 		if (this.wsServer && this.wsServer.readyState === WebSocket.OPEN) {
-			const messageWithId = `${message} (${this.participantId})`;
-			console.log('sending message', messageWithId);
-			this.wsServer.send(messageWithId);
+			this.wsServer.send(message);
 		}
 	}
 }

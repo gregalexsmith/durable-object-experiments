@@ -8,16 +8,22 @@ app.get('/', (c) => {
 	return c.html(
 		<html>
 			<head>
-				<script src="/websocket-hibernation.js"></script>
+				<script src="/websocket-client.js"></script>
 			</head>
 			<body>
 				<a href="/">Home</a>
 				<h1>WebSocket Hibernation</h1>
-				<div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }} id="ws-controls">
-					<button id="connect">Connect</button>
-					<button id="send">Send</button>
-					<button id="close">Close</button>
-					<div id="output"></div>
+				<div style={{ display: 'flex', flexDirection: 'column', gap: '10px', maxWidth: '500px' }} id="ws-controls">
+					<div style={{ display: 'flex', gap: '10px' }}>
+						<button data-ws-connect>Connect</button>
+						<button data-ws-close>Close</button>
+					</div>
+					<div data-ws-client-count></div>
+					<div style={{ display: 'flex', gap: '10px' }}>
+						<input data-ws-input />
+						<button data-ws-send>Send</button>
+					</div>
+					<div data-ws-output></div>
 				</div>
 			</body>
 		</html>

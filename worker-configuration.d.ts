@@ -8,6 +8,7 @@ interface Env {
 	WEBSOCKET_HIBERNATION_SERVER: DurableObjectNamespace /* WebSocketHibernationServer */;
 	SQL_TASKS: DurableObjectNamespace /* SQLTasks */;
 	AI_EXAMPLE: DurableObjectNamespace /* AIExample */;
+	AI_CHAT_PARTICIPANT: DurableObjectNamespace /* AIChatParticipant */;
 	AI: Ai;
 	ASSETS: Fetcher;
 	OPENAI_API_KEY: string;

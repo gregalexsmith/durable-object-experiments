@@ -5,6 +5,7 @@ import { Weather } from './simulation/Weather';
 import { WebSocketHibernationServer } from './websocket-hibernation/WebSocketHibernationServer';
 import { SQLTasks } from './sql-tasks/SQLTasks';
 import { AIExample } from './ai-example/AIExample';
+import { AIChatParticipant } from './ai-chat-participant/AIChatParticipant';
 
 export type Context = {
 	Bindings: {
@@ -15,6 +16,7 @@ export type Context = {
 		WEBSOCKET_HIBERNATION_SERVER: DurableObjectNamespace<WebSocketHibernationServer>;
 		SQL_TASKS: DurableObjectNamespace<SQLTasks>;
 		AI_EXAMPLE: DurableObjectNamespace<AIExample>;
+		AI_CHAT_PARTICIPANT: DurableObjectNamespace<AIChatParticipant>;
 		ASSETS: Fetcher;
 		AI: Ai;
 		OPENAI_API_KEY: string;

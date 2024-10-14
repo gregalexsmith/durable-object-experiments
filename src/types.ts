@@ -3,7 +3,7 @@ import { World } from './simulation/World';
 import { Plant } from './simulation/Plant';
 import { Weather } from './simulation/Weather';
 import { WebSocketHibernationServer } from './websocket-hibernation/WebSocketHibernationServer';
-import { SQLTasks } from './sql-tasks/SQLTasks';
+import { SQLItems } from './sql-items/SQLItems';
 import { AIExample } from './ai-example/AIExample';
 import { AIChatParticipant } from './ai-chat-participant/AIChatParticipant';
 
@@ -14,7 +14,7 @@ export type Context = {
 		PLANTS: DurableObjectNamespace<Plant>;
 		WEATHER: DurableObjectNamespace<Weather>;
 		WEBSOCKET_HIBERNATION_SERVER: DurableObjectNamespace<WebSocketHibernationServer>;
-		SQL_TASKS: DurableObjectNamespace<SQLTasks>;
+		SQL_ITEMS: DurableObjectNamespace<SQLItems>;
 		AI_EXAMPLE: DurableObjectNamespace<AIExample>;
 		AI_CHAT_PARTICIPANT: DurableObjectNamespace<AIChatParticipant>;
 		ASSETS: Fetcher;

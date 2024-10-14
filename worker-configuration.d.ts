@@ -6,7 +6,7 @@ interface Env {
 	PLANTS: DurableObjectNamespace /* Plant */;
 	WEATHER: DurableObjectNamespace /* Weather */;
 	WEBSOCKET_HIBERNATION_SERVER: DurableObjectNamespace /* WebSocketHibernationServer */;
-	SQL_TASKS: DurableObjectNamespace /* SQLTasks */;
+	SQL_ITEMS: DurableObjectNamespace /* SQLItems */;
 	AI_EXAMPLE: DurableObjectNamespace /* AIExample */;
 	AI_CHAT_PARTICIPANT: DurableObjectNamespace /* AIChatParticipant */;
 	AI: Ai;

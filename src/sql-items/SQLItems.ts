@@ -6,19 +6,19 @@
 
 import { DurableObject } from 'cloudflare:workers';
 
-type Task = {
+type Item = {
 	id: number;
 	content: string;
 };
 
 const sqlSchema = `
-CREATE TABLE IF NOT EXISTS tasks(
+CREATE TABLE IF NOT EXISTS items(
   id    INTEGER PRIMARY KEY,
   content  TEXT
 );
 `;
 
-export class SQLTasks extends DurableObject {
+export class SQLItems extends DurableObject {
 	sql: SqlStorage;
 
 	constructor(ctx: DurableObjectState, env: Env) {
@@ -27,25 +27,25 @@ export class SQLTasks extends DurableObject {
 		this.sql.exec(sqlSchema);
 	}
 
-	getTasks() {
-		return this.sql.exec('SELECT * FROM tasks;').toArray() as Task[];
+	getItems() {
+		return this.sql.exec('SELECT * FROM items;').toArray() as Item[];
 	}
 
-	createTask(content: string) {
-		this.sql.exec(`INSERT INTO tasks (content) VALUES ('${content}');`);
+	createItem(content: string) {
+		this.sql.exec(`INSERT INTO items (content) VALUES ('${content}');`);
 	}
 
-	removeTask(id: number) {
+	removeItem(id: number) {
 		try {
-			let cursor = this.sql.exec(`DELETE FROM tasks WHERE id = ?;`, id);
+			let cursor = this.sql.exec(`DELETE FROM items WHERE id = ?;`, id);
 			const result = cursor.next();
-			console.log('Task removed successfully', result);
+			console.log('Item removed successfully', result);
 
-			const tasks = this.sql.exec('SELECT * FROM tasks;').toArray() as Task[];
-			console.log('Tasks after removal:', tasks);
+			const items = this.sql.exec('SELECT * FROM items;').toArray() as Item[];
+			console.log('Items after removal:', items);
 			return { success: true };
 		} catch (error) {
-			console.error('Error removing task:', error);
+			console.error('Error removing item:', error);
 			throw error;
 		}
 	}

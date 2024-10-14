@@ -2,7 +2,7 @@ import { Hono } from 'hono';
 import counter from './counter/route';
 import simulation from './simulation/route';
 import webSocketHibernation from './websocket-hibernation/route';
-import sqlTasks from './sql-tasks/route';
+import sqlItems from './sql-items/route';
 import aiExample from './ai-example/route';
 import aiChatParticipant from './ai-chat-participant/route';
 import type { Context } from './types';
@@ -18,7 +18,7 @@ app.get('/', (c) => {
 					<a href="/counter">Counter</a>
 					<a href="/simulation">World Simulation</a>
 					<a href="/websocket-hibernation">WebSocket Hibernation</a>
-					<a href="/sql-tasks">SQL Tasks</a>
+					<a href="/sql-items">SQL Items</a>
 					<a href="/ai-example">AI Example</a>
 					<a href="/ai-chat-participant">AI Chat Participant</a>
 				</div>
@@ -30,7 +30,7 @@ app.get('/', (c) => {
 app.route('/counter', counter);
 app.route('/simulation', simulation);
 app.route('/websocket-hibernation', webSocketHibernation);
-app.route('/sql-tasks', sqlTasks);
+app.route('/sql-items', sqlItems);
 app.route('/ai-example', aiExample);
 app.route('/ai-chat-participant', aiChatParticipant);
 
@@ -43,6 +43,6 @@ export { Weather } from './simulation/Weather';
 export { Plant } from './simulation/Plant';
 
 export { WebSocketHibernationServer } from './websocket-hibernation/WebSocketHibernationServer';
-export { SQLTasks } from './sql-tasks/SQLTasks';
+export { SQLItems } from './sql-items/SQLItems';
 export { AIExample } from './ai-example/AIExample';
 export { AIChatParticipant } from './ai-chat-participant/AIChatParticipant';

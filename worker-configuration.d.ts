@@ -9,6 +9,7 @@ interface Env {
 	SQL_ITEMS: DurableObjectNamespace /* SQLItems */;
 	AI_EXAMPLE: DurableObjectNamespace /* AIExample */;
 	AI_CHAT_PARTICIPANT: DurableObjectNamespace /* AIChatParticipant */;
+	PARTY_SERVER_EXAMPLE: DurableObjectNamespace /* PartyServerExample */;
 	AI: Ai;
 	ASSETS: Fetcher;
 	OPENAI_API_KEY: string;

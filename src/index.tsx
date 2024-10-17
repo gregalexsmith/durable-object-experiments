@@ -5,6 +5,7 @@ import webSocketHibernation from './websocket-hibernation/route';
 import sqlItems from './sql-items/route';
 import aiExample from './ai-example/route';
 import aiChatParticipant from './ai-chat-participant/route';
+import partyserver from './partyserver/route';
 import type { Context } from './types';
 
 const app = new Hono<Context>();
@@ -21,6 +22,7 @@ app.get('/', (c) => {
 					<a href="/sql-items">SQL Items</a>
 					<a href="/ai-example">AI Example</a>
 					<a href="/ai-chat-participant">AI Chat Participant</a>
+					<a href="/partyserver">Party Server</a>
 				</div>
 			</body>
 		</html>
@@ -33,6 +35,7 @@ app.route('/websocket-hibernation', webSocketHibernation);
 app.route('/sql-items', sqlItems);
 app.route('/ai-example', aiExample);
 app.route('/ai-chat-participant', aiChatParticipant);
+app.route('/partyserver', partyserver);
 
 export default app;
 
@@ -46,3 +49,4 @@ export { WebSocketHibernationServer } from './websocket-hibernation/WebSocketHib
 export { SQLItems } from './sql-items/SQLItems';
 export { AIExample } from './ai-example/AIExample';
 export { AIChatParticipant } from './ai-chat-participant/AIChatParticipant';
+export { PartyServerExample } from './partyserver/PartyServerExample';

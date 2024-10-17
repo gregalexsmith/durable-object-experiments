@@ -6,7 +6,7 @@ import { WebSocketHibernationServer } from './websocket-hibernation/WebSocketHib
 import { SQLItems } from './sql-items/SQLItems';
 import { AIExample } from './ai-example/AIExample';
 import { AIChatParticipant } from './ai-chat-participant/AIChatParticipant';
-
+import { PartyServerExample } from './partyserver/PartyServerExample';
 export type Context = {
 	Bindings: {
 		COUNTERS: DurableObjectNamespace<Counter>;
@@ -17,6 +17,7 @@ export type Context = {
 		SQL_ITEMS: DurableObjectNamespace<SQLItems>;
 		AI_EXAMPLE: DurableObjectNamespace<AIExample>;
 		AI_CHAT_PARTICIPANT: DurableObjectNamespace<AIChatParticipant>;
+		PARTY_SERVER_EXAMPLE: DurableObjectNamespace<PartyServerExample>;
 		ASSETS: Fetcher;
 		AI: Ai;
 		OPENAI_API_KEY: string;

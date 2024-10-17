@@ -16,10 +16,11 @@ bindings = [
   { name = "WEBSOCKET_HIBERNATION_SERVER", class_name = "WebSocketHibernationServer" },
   { name = "SQL_ITEMS", class_name = "SQLItems" },
   { name = "AI_EXAMPLE", class_name = "AIExample" },
-  { name = "AI_CHAT_PARTICIPANT", class_name = "AIChatParticipant" }
+  { name = "AI_CHAT_PARTICIPANT", class_name = "AIChatParticipant" },
+  { name = "PARTY_SERVER_EXAMPLE", class_name = "PartyServerExample" }
 ]
 
 [[migrations]]
 tag = "v1"
-new_classes = ["Counter", "World", "Plant", "Weather", "WebSocketHibernationServer"]
+new_classes = ["Counter", "World", "Plant", "Weather", "WebSocketHibernationServer", "PartyServerExample"]
 new_sqlite_classes = ["SQLItems", "AIExample", "AIChatParticipant"]
